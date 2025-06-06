@@ -7,16 +7,17 @@ downloaded from:
 https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT/tree/main
 ---
 
-## 📁 File Descriptions
+## File Descriptions
 
-### ✅ `pytorch_model.bin`
+### `pytorch_model.bin`
 - The **pre-trained model weights**.
-- Contains the learned parameters of the BERT model (e.g., attention layers, embeddings, classifier head).
+- It is a binary file containing the pre-trained model's weights (i.e., all the learned parameters from BERT).
+- (e.g., attention layers, embeddings, classifier head).
 - This is the core of the model — the "brain" that learned from data.
 
 ---
 
-### ⚙️ `config.json`
+### `config.json`
 - Defines the **model architecture and hyperparameters**.
 - Example fields include:
   - `hidden_size`: 768
@@ -27,7 +28,7 @@ https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT/tree/main
 
 ---
 
-### 📖 `vocab.txt`
+### `vocab.txt`
 - The **vocabulary list** used by the tokenizer.
 - Contains all tokens/subwords known to the model (one token per line).
 - Used during tokenization to convert text into token IDs.
@@ -35,7 +36,7 @@ https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT/tree/main
 
 ---
 
-### 🧾 `tokenizer_config.json`
+### `tokenizer_config.json`
 - Configuration for the tokenizer behavior.
 - Defines properties like:
   - Whether to lowercase text
@@ -45,7 +46,7 @@ https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT/tree/main
 
 ---
 
-### 🏷️ `special_tokens_map.json`
+### `special_tokens_map.json`
 - Maps **special roles** to their corresponding tokens.
 - Example mappings:
   - `"cls_token": "[CLS]"`
@@ -56,7 +57,7 @@ https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT/tree/main
 
 ---
 
-## ✅ How to Load This Model in Code
+## How to Load This Model in Code
 
 ```python
 from transformers import AutoTokenizer, AutoModelForSequenceClassification

@@ -1,11 +1,19 @@
 import torch
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
+from sklearn.metrics import accuracy_score, f1_score
 
 # Define emotion label mapping
 emotion_labels = ['neutral', 'joy', 'sadness', 'anger', 'surprise', 'fear', 'disgust']
 label2id = {label: i for i, label in enumerate(emotion_labels)}
 id2label = {i: label for label, i in label2id.items()}
+
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = torch.argmax(torch.tensor(logits), dim=-1)
+    accuracy = accuracy_score(labels, predictions)
+    f1 = f1_score(labels, predictions, average='weighted')  # or 'macro' for balanced F1
+    return {"accuracy": accuracy, "f1": f1}
 
 # Load MELD CSV files
 dataset = load_dataset('csv', 
@@ -65,7 +73,8 @@ trainer = Trainer(
     args=training_args,
     train_dataset=tokenized_dataset["train"],
     eval_dataset=tokenized_dataset["validation"],
-    tokenizer=tokenizer
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics
 )
 
 # Train the model
