@@ -2,7 +2,7 @@ import torch
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
 from sklearn.metrics import accuracy_score, f1_score
-
+print("GPU Available:", torch.cuda.is_available())
 # Define emotion label mapping
 emotion_labels = ['neutral', 'joy', 'sadness', 'anger', 'surprise', 'fear', 'disgust']
 label2id = {label: i for i, label in enumerate(emotion_labels)}
@@ -53,7 +53,11 @@ model = AutoModelForSequenceClassification.from_pretrained(
     id2label=id2label,
     label2id=label2id
 )
+# Move model to GPU if available
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+print("Using device:", device)
+model.to(device)
 # Set training arguments
 training_args = TrainingArguments(
     output_dir="./results",

@@ -1,0 +1,2 @@
+Evaluation Results on Test Set:
+{'eval_loss': 1.0613631010055542, 'eval_accuracy': 0.6363984674329501, 'eval_f1': 0.6196564508298636, 'eval_runtime': 30.5275, 'eval_samples_per_second': 85.497, 'eval_steps_per_second': 10.712}
