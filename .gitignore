@@ -4,16 +4,11 @@
 # Python and Jupyter artifacts
 __pycache__/
 *.pyc
-*.ipynb_checkpoints/
 
 # Model files
 *.safetensors
 *.bin
 
 # Datasets and outputs
-MELDRaw/
 *.csv
 *.tsv
-results/
-logs/
-checkpoints/
