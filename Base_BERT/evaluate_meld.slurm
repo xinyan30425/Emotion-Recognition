@@ -19,4 +19,4 @@ conda activate torch-env
 cd /home/liu.xinyan1/Emotion-Recognition/Base_BERT
 
 # Run training script
-python evaluate_finetuned_model.py
+python evaluate_meld.py

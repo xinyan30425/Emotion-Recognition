@@ -1,19 +1,25 @@
 # macOS system files
 .DS_Store
 
-# Python and Jupyter artifacts
+# Python artifacts
 __pycache__/
 *.pyc
-*.ipynb_checkpoints/
+*.py[cod]
+*.log
+*.tmp
+*.swp
 
 # Model files
 *.safetensors
 *.bin
 
 # Datasets and outputs
-MELDRaw/
+Base_BERT/MELDRaw/
+Base_BERT/empatheticdialogues/
+Base_BERT/empathetic_dialogues_results/*checkpoints*
+Base_BERT/meld_results/*checkpoints*
+Base_BERT/empathetic_dialogues_log/bert_error.log
+Base_BERT/empathetic_dialogues_log/bert_output.log
 *.csv
 *.tsv
-results/
-logs/
-checkpoints/
+*checkpoints*

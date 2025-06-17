@@ -1,8 +1,0 @@
-/home/liu.xinyan1/miniconda/envs/torch-env/lib/python3.10/site-packages/huggingface_hub/file_download.py:943: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-  warnings.warn(
-Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-/home/liu.xinyan1/miniconda/envs/torch-env/lib/python3.10/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
-  return torch._C._cuda_getDeviceCount() > 0
-Detected kernel version 3.10.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-  0%|          | 0/1875 [00:00<?, ?it/s]  0%|          | 1/1875 [01:10<36:50:36, 70.78s/it]  0%|          | 2/1875 [02:18<35:59:54, 69.19s/it]  0%|          | 3/1875 [03:26<35:42:11, 68.66s/it]  0%|          | 4/1875 [04:34<35:33:32, 68.42s/it]  0%|          | 5/1875 [05:43<35:28:40, 68.30s/it]slurmstepd: error: *** JOB 48958548 ON c2172 CANCELLED AT 2025-06-13T01:43:32 ***

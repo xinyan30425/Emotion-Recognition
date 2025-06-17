@@ -60,14 +60,14 @@ print("Using device:", device)
 model.to(device)
 # Set training arguments
 training_args = TrainingArguments(
-    output_dir="./results",
+    output_dir="./meld_results",
     evaluation_strategy="epoch",
     save_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=16,
     num_train_epochs=3,
     weight_decay=0.01,
-    logging_dir="./logs",
+    logging_dir="./meld_logs",
     load_best_model_at_end=True
 )
 
@@ -85,4 +85,4 @@ trainer = Trainer(
 trainer.train()
 
 # Save the fine-tuned model
-trainer.save_model("./fine-tuned-meld-emotion")
+trainer.save_model("./meld_finetuned_model/fine-tuned-meld-emotion")

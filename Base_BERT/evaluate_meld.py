@@ -9,7 +9,7 @@ label2id = {label: i for i, label in enumerate(emotion_labels)}
 id2label = {i: label for label, i in label2id.items()}
 
 # Load fine-tuned model and tokenizer
-model = AutoModelForSequenceClassification.from_pretrained("./fine-tuned-meld-emotion")
+model = AutoModelForSequenceClassification.from_pretrained("./meld_finetuned_model/fine-tuned-meld-emotion")
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
