@@ -1,0 +1,83 @@
+# Multimodal Emotion Recognition on DAIC-WOZ
+
+This repository implements a multimodal emotion classification pipeline using the [DAIC-WOZ](https://dcapswoz.ict.usc.edu/) dataset, combining **text** (transcripts) and **audio** (speech features).  
+It leverages a `ClinicalBERT` model fine-tuned on [CounselChat](https://github.com/nbertagnolli/counsel-chat) for text-based emotion detection, and integrates prosodic features (MFCC, pitch, energy) for audio-based signals.
+
+---
+
+## 🧩 Project Structure
+.
+├── preprocess/ # DAIC-WOZ preprocessing scripts
+│ ├── extract_transcripts.py # Parse transcripts into utterances
+│ ├── extract_audio_features.py # Extract MFCCs, pitch, energy from audio
+│ ├── merge_modalities.py # Merge text + audio + labels
+│
+├── counselchat/
+│ ├── fine_tune_clinicalbert.py # Fine-tune ClinicalBERT on CounselChat
+│ └── counselchat_weighted_model/ # Saved fine-tuned model
+│
+├── Clinical_BERT/DAIC-WOZ/
+│ ├── train_early_fusion.py # Train joint multimodal early-fusion model
+│ ├── train_late_fusion.py # Train separate text/audio models for late fusion
+│ ├── eval_late_fusion.py # Evaluate trained text/audio/fusion models
+│
+├── mm_train.parquet
+├── mm_val.parquet
+├── mm_test.parquet
+├── mm_labels.json # label2id and id2label mappings
+└── README.md
+
+
+---
+
+## ⚙️ Data Preprocessing
+
+**Goal:** Convert DAIC-WOZ interviews into utterance-level data with aligned text, audio features, and emotion labels.
+
+### 1. Transcript parsing
+- Parse `.csv` transcripts into individual utterances
+- Columns: `session_id`, `start_time`, `end_time`, `speaker`, `text`
+
+### 2. Audio segmentation + feature extraction
+- Segment `.wav` audio clips based on transcript timings
+- Extract per-segment features:
+  - **Prosody:** pitch (mean), energy (RMS)
+  - **Spectral:** 13 MFCCs (mfcc_0 … mfcc_12)
+- Normalize features (z-score across training set)
+
+### 3. Merge with labels
+- Align utterances with gold emotion labels
+- Generate multi-hot `label_vec` for multi-label classification
+- Save as:
+  - `mm_train.parquet`, `mm_val.parquet`, `mm_test.parquet`
+  - `mm_labels.json` (label2id and id2label mapping)
+
+---
+
+## 🤗 Text Model: Fine-Tune ClinicalBERT on CounselChat
+
+**Purpose:** Teach the text encoder to recognize mental health–related emotional content before multimodal training.
+
+- Model: `emilyalsentzer/Bio_ClinicalBERT`
+- Dataset: [CounselChat](https://github.com/nbertagnolli/counsel-chat)
+- Training:
+  - Reformulated as multi-label classification
+  - Weighted binary cross-entropy loss (pos_weight)
+  - Dynamic per-label threshold tuning
+- Output:
+  - `counselchat_weighted_model/best_model/` directory
+
+This model is used as the text backbone for DAIC-WOZ multimodal training.
+
+---
+
+## 🧠 Multimodal Models
+
+### 📌 Early Fusion (`train_early_fusion.py`)
+- Concatenates text [CLS] embedding with audio features
+- Single joint classifier on fused representation
+- Learns cross-modal correlations directly
+
+**Training:**
+```bash
+python train_early_fusion.py
