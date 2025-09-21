@@ -7,25 +7,25 @@ It leverages a `ClinicalBERT` model fine-tuned on [CounselChat](https://github.c
 
 ## 🧩 Project Structure
 .
-| dacwoz_downloader.py # Download and Unzip the daicwoz data from URL
-│ 1. process_transcript.py # Merge all participant-only transcript
-| 2. assign_labels.py # Assign emotion lavels to participant-only transcripts based on emotion schema
-| 3. normalize_labels_with_ids.py # Build filename id to match audio clips and features
-| 4. segment_audio.py # Segment participant-only audio data
-| 5. extract_audio_features.py # Extract audio features: mfcc, putch, energy from the audio clips
-| 6. merge_audio_text.py # Merge labeled transcripts data with the audio data
-│
-│ prep_multimodal.py
-│ train_early_fusion.py # Train joint multimodal early-fusion model
-│ train_late_fusion.py # Train separate text/audio models for late fusion
-│ eval_late_fusion.py # Evaluate trained text/audio/fusion models
-│
-├── mm_train.parquet
-├── mm_val.parquet
-├── mm_test.parquet
-├── mm_labels.json # label2id and id2label mappings
+-| dacwoz_downloader.py # Download and Unzip the daicwoz data from URL
+-│ 1. process_transcript.py # Merge all participant-only transcript
+-| 2. assign_labels.py # Assign emotion lavels to participant-only transcripts based on emotion schema
+-| 3. normalize_labels_with_ids.py # Build filename id to match audio clips and features
+-| 4. segment_audio.py # Segment participant-only audio data
+-| 5. extract_audio_features.py # Extract audio features: mfcc, putch, energy from the audio clips
+-| 6. merge_audio_text.py # Merge labeled transcripts data with the audio data
+-│
+-│ prep_multimodal.py
+-│ train_early_fusion.py # Train joint multimodal early-fusion model
+-│ train_late_fusion.py # Train separate text/audio models for late fusion
+-│ eval_late_fusion.py # Evaluate trained text/audio/fusion models
+-│
+-├── mm_train.parquet
+-├── mm_val.parquet
+-├── mm_test.parquet
+-├── mm_labels.json # label2id and id2label mappings
 
-└── README.md
+-└── README.md
 
 
 ---
