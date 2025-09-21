@@ -6,6 +6,7 @@ It leverages a `ClinicalBERT` model fine-tuned on [CounselChat](https://github.c
 ---
 
 ## Project Structure
+- Data Preprocessing
 dacwoz_downloader.py # Download and Unzip the daicwoz data from URL
 
 1. process_transcript.py # Merge all participant-only transcript
